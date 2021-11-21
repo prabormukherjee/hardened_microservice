@@ -1,4 +1,3 @@
-
 [INFO] 20.04 CIS Docker Community Edition Benchmark
 [INFO] 1 Host Configuration
 [INFO] 1.1 Linux Hosts Specific Configuration
@@ -63,9 +62,8 @@
 [WARN] 2.5 Ensure insecure registries are not used (Automated)
 [PASS] 2.6 Ensure aufs storage driver is not used (Automated)
 [FAIL] 2.7 Ensure TLS authentication for Docker daemon is configured (Automated)
-	 root        4942       1  0 19:22 ?        00:00:13 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-	 prabor     63865   63863  0 21:40 pts/0    00:00:00 grep dockerd
-	 grep: /etc/docker/daemon.json: No such file or directory
+	 root         859       1  0 13:43 ?        00:00:16 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+	 prabor    204275  204273  0 22:30 pts/0    00:00:00 grep dockerd
 	 
 [WARN] 2.8 Ensure the default ulimit is configured appropriately (Manual))
 [FAIL] 2.9 Enable user namespace support (Automated)
@@ -75,20 +73,9 @@
 [PASS] 2.11 Ensure base device size is not changed until needed (Automated)
 [PASS] 2.12 Ensure that authorization for Docker client commands is enabled (Automated)
 [PASS] 2.13 Ensure centralized and remote logging is configured (Automated)
-[FAIL] 2.14 Ensure containers are restricted from acquiring new privileges (Automated)
-	 root        4942       1  0 19:22 ?        00:00:13 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-	 prabor     63930   63928  0 21:40 pts/0    00:00:00 grep dockerd
-	 grep: /etc/docker/daemon.json: No such file or directory
-	 
-[FAIL] 2.15 Ensure live restore is Enabled (Automated)
-	 LiveRestoreEnabled=false
-	 grep: /etc/docker/daemon.json: No such file or directory
-	 
-[FAIL] 2.16 Ensure Userland Proxy is Disabled (Automated)
-	 root        4942       1  0 19:22 ?        00:00:13 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-	 prabor     63975   63973  0 21:40 pts/0    00:00:00 grep dockerd
-	 grep: /etc/docker/daemon.json: No such file or directory
-	 
+[PASS] 2.14 Ensure containers are restricted from acquiring new privileges (Automated)
+[PASS] 2.15 Ensure live restore is Enabled (Automated)
+[PASS] 2.16 Ensure Userland Proxy is Disabled (Automated)
 [WARN] 2.17 Ensure that a daemon-wide custom seccomp profile is applied if appropriate (Manual)
 [PASS] 2.18 Ensure that experimental features are not implemented in production (Automated)
 [INFO] 3 Docker daemon configuration files
@@ -114,12 +101,8 @@
 [FAIL] 3.16 Ensure that Docker socket file permissions are set to 660 or more restrictive (Automated)
 	 '/var/run/docker.sock' permissions=666
 	 
-[FAIL] 3.17 Ensure that daemon.json file ownership is set to root:root (Automated)
-	 stat: cannot stat '/etc/docker/daemon.json': No such file or directory
-	 
-[FAIL] 3.18 Ensure that daemon.json file permissions are set to 644 or more restrictive (Automated)
-	 stat: cannot stat '/etc/docker/daemon.json': No such file or directory
-	 
+[PASS] 3.17 Ensure that daemon.json file ownership is set to root:root (Automated)
+[PASS] 3.18 Ensure that daemon.json file permissions are set to 644 or more restrictive (Automated)
 [PASS] 3.19 Ensure that /etc/default/docker file ownership is set to root:root (Automated)
 [FAIL] 3.20 Ensure that /etc/sysconfig/docker file permissions are set to 644 or more restrictive (Automated)
 	 stat: cannot stat '/etc/sysconfig/docker': No such file or directory
@@ -298,16 +281,6 @@ touch /etc/subuid /etc/subgid
 Step 2: Start the docker daemon with --userns-remap flag 
 dockerd --userns-remap=default
 
-2.14 You should run the Docker daemon as below:
-dockerd --no-new-privileges
-
-2.15 Run the docker in daemon mode and pass --live-restore as an argument.
-For Example,
-dockerd --live-restore
-
-2.16 You should run the Docker daemon as below:
-dockerd --userland-proxy=false
-
 2.17 By default, Docker's default seccomp profile is applied. If this is adequate for your 
 environment, no action is necessary. Alternatively, if you choose to apply your own 
 seccomp profile, use the --seccomp-profile flag at daemon start or put it in the daemon 
@@ -347,10 +320,6 @@ This sets the Docker server certificate key file permissions to 400 .
 3.16 You should execute the command below.
 chmod 660 /var/run/docker.sock
 This sets the file permissions of the Docker socket file to 660 .
-
-3.17 stat: cannot stat '/etc/docker/daemon.json': No such file or directory
-
-3.18 stat: cannot stat '/etc/docker/daemon.json': No such file or directory
 
 3.20 stat: cannot stat '/etc/sysconfig/docker': No such file or directory
 
@@ -610,7 +579,7 @@ docker container prune
 7.10 Test marked as skip
 
 == Summary ==
-30 checks PASS
-38 checks FAIL
+35 checks PASS
+33 checks FAIL
 38 checks WARN
 10 checks INFO

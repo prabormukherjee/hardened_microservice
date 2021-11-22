@@ -62,8 +62,8 @@
 [WARN] 2.5 Ensure insecure registries are not used (Automated)
 [PASS] 2.6 Ensure aufs storage driver is not used (Automated)
 [FAIL] 2.7 Ensure TLS authentication for Docker daemon is configured (Automated)
-	 root         859       1  0 13:43 ?        00:00:16 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-	 prabor    204275  204273  0 22:30 pts/0    00:00:00 grep dockerd
+	 root         859       1  0 00:09 ?        00:00:17 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+	 prabor    210765  210763  0 09:08 pts/0    00:00:00 grep dockerd
 	 
 [WARN] 2.8 Ensure the default ulimit is configured appropriately (Manual))
 [FAIL] 2.9 Enable user namespace support (Automated)
@@ -118,9 +118,7 @@
 [WARN] 4.2 Ensure that containers use only trusted base images (Manual)
 [WARN] 4.3 Ensure that unnecessary packages are not installed in the container (Manual)
 [WARN] 4.4 Ensure images are scanned and rebuilt to include security patches (Manual)
-[FAIL] 4.5 Ensure Content trust for Docker is Enabled (Automated)
-	 DOCKER_CONTENT_TRUST=
-	 
+[PASS] 4.5 Ensure Content trust for Docker is Enabled (Automated)
 [WARN] 4.6 Ensure HEALTHCHECK instructions have been added to the container images (Automated)
 [WARN] 4.7 Ensure update instructions are not use alone in the Dockerfile (Manual)
 [WARN] 4.8 Ensure setuid and setgid permissions are removed (Manual)
@@ -361,11 +359,6 @@ software which could contain vectors for attack.
 keep the operating system patch level at an appropriate level. Once the images have been
 re-built, containers should be re-started making use of the updated images.
 
-4.5 To enable content trust in a bash shell, enter the following command:
-export DOCKER_CONTENT_TRUST=1
-Alternatively, you could set this environment variable in your profile file so that content 
-trust in enabled on every login.
-
 4.6 You should follow the Docker documentation and rebuild your container images to include
 the HEALTHCHECK instruction.
 
@@ -579,7 +572,7 @@ docker container prune
 7.10 Test marked as skip
 
 == Summary ==
-35 checks PASS
-33 checks FAIL
+36 checks PASS
+32 checks FAIL
 38 checks WARN
 10 checks INFO

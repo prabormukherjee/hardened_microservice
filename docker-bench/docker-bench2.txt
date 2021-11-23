@@ -1,4 +1,3 @@
-
 [INFO] 20.04 CIS Docker Community Edition Benchmark
 [INFO] 1 Host Configuration
 [INFO] 1.1 Linux Hosts Specific Configuration
@@ -63,9 +62,8 @@
 [WARN] 2.5 Ensure insecure registries are not used (Automated)
 [PASS] 2.6 Ensure aufs storage driver is not used (Automated)
 [FAIL] 2.7 Ensure TLS authentication for Docker daemon is configured (Automated)
-	 root        4942       1  0 19:22 ?        00:00:13 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-	 prabor     63865   63863  0 21:40 pts/0    00:00:00 grep dockerd
-	 grep: /etc/docker/daemon.json: No such file or directory
+	 root         859       1  0 00:09 ?        00:00:17 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+	 prabor    210765  210763  0 09:08 pts/0    00:00:00 grep dockerd
 	 
 [WARN] 2.8 Ensure the default ulimit is configured appropriately (Manual))
 [FAIL] 2.9 Enable user namespace support (Automated)
@@ -75,20 +73,9 @@
 [PASS] 2.11 Ensure base device size is not changed until needed (Automated)
 [PASS] 2.12 Ensure that authorization for Docker client commands is enabled (Automated)
 [PASS] 2.13 Ensure centralized and remote logging is configured (Automated)
-[FAIL] 2.14 Ensure containers are restricted from acquiring new privileges (Automated)
-	 root        4942       1  0 19:22 ?        00:00:13 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-	 prabor     63930   63928  0 21:40 pts/0    00:00:00 grep dockerd
-	 grep: /etc/docker/daemon.json: No such file or directory
-	 
-[FAIL] 2.15 Ensure live restore is Enabled (Automated)
-	 LiveRestoreEnabled=false
-	 grep: /etc/docker/daemon.json: No such file or directory
-	 
-[FAIL] 2.16 Ensure Userland Proxy is Disabled (Automated)
-	 root        4942       1  0 19:22 ?        00:00:13 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-	 prabor     63975   63973  0 21:40 pts/0    00:00:00 grep dockerd
-	 grep: /etc/docker/daemon.json: No such file or directory
-	 
+[PASS] 2.14 Ensure containers are restricted from acquiring new privileges (Automated)
+[PASS] 2.15 Ensure live restore is Enabled (Automated)
+[PASS] 2.16 Ensure Userland Proxy is Disabled (Automated)
 [WARN] 2.17 Ensure that a daemon-wide custom seccomp profile is applied if appropriate (Manual)
 [PASS] 2.18 Ensure that experimental features are not implemented in production (Automated)
 [INFO] 3 Docker daemon configuration files
@@ -114,12 +101,8 @@
 [FAIL] 3.16 Ensure that Docker socket file permissions are set to 660 or more restrictive (Automated)
 	 '/var/run/docker.sock' permissions=666
 	 
-[FAIL] 3.17 Ensure that daemon.json file ownership is set to root:root (Automated)
-	 stat: cannot stat '/etc/docker/daemon.json': No such file or directory
-	 
-[FAIL] 3.18 Ensure that daemon.json file permissions are set to 644 or more restrictive (Automated)
-	 stat: cannot stat '/etc/docker/daemon.json': No such file or directory
-	 
+[PASS] 3.17 Ensure that daemon.json file ownership is set to root:root (Automated)
+[PASS] 3.18 Ensure that daemon.json file permissions are set to 644 or more restrictive (Automated)
 [PASS] 3.19 Ensure that /etc/default/docker file ownership is set to root:root (Automated)
 [FAIL] 3.20 Ensure that /etc/sysconfig/docker file permissions are set to 644 or more restrictive (Automated)
 	 stat: cannot stat '/etc/sysconfig/docker': No such file or directory
@@ -135,9 +118,7 @@
 [WARN] 4.2 Ensure that containers use only trusted base images (Manual)
 [WARN] 4.3 Ensure that unnecessary packages are not installed in the container (Manual)
 [WARN] 4.4 Ensure images are scanned and rebuilt to include security patches (Manual)
-[FAIL] 4.5 Ensure Content trust for Docker is Enabled (Automated)
-	 DOCKER_CONTENT_TRUST=
-	 
+[PASS] 4.5 Ensure Content trust for Docker is Enabled (Automated)
 [WARN] 4.6 Ensure HEALTHCHECK instructions have been added to the container images (Automated)
 [WARN] 4.7 Ensure update instructions are not use alone in the Dockerfile (Manual)
 [WARN] 4.8 Ensure setuid and setgid permissions are removed (Manual)
@@ -298,16 +279,6 @@ touch /etc/subuid /etc/subgid
 Step 2: Start the docker daemon with --userns-remap flag 
 dockerd --userns-remap=default
 
-2.14 You should run the Docker daemon as below:
-dockerd --no-new-privileges
-
-2.15 Run the docker in daemon mode and pass --live-restore as an argument.
-For Example,
-dockerd --live-restore
-
-2.16 You should run the Docker daemon as below:
-dockerd --userland-proxy=false
-
 2.17 By default, Docker's default seccomp profile is applied. If this is adequate for your 
 environment, no action is necessary. Alternatively, if you choose to apply your own 
 seccomp profile, use the --seccomp-profile flag at daemon start or put it in the daemon 
@@ -348,10 +319,6 @@ This sets the Docker server certificate key file permissions to 400 .
 chmod 660 /var/run/docker.sock
 This sets the file permissions of the Docker socket file to 660 .
 
-3.17 stat: cannot stat '/etc/docker/daemon.json': No such file or directory
-
-3.18 stat: cannot stat '/etc/docker/daemon.json': No such file or directory
-
 3.20 stat: cannot stat '/etc/sysconfig/docker': No such file or directory
 
 3.21 stat: cannot stat '/etc/sysconfig/docker': No such file or directory
@@ -391,11 +358,6 @@ software which could contain vectors for attack.
 4.4 Images should be re-built ensuring that the latest version of the base images are used, to
 keep the operating system patch level at an appropriate level. Once the images have been
 re-built, containers should be re-started making use of the updated images.
-
-4.5 To enable content trust in a bash shell, enter the following command:
-export DOCKER_CONTENT_TRUST=1
-Alternatively, you could set this environment variable in your profile file so that content 
-trust in enabled on every login.
 
 4.6 You should follow the Docker documentation and rebuild your container images to include
 the HEALTHCHECK instruction.
@@ -610,7 +572,7 @@ docker container prune
 7.10 Test marked as skip
 
 == Summary ==
-30 checks PASS
-38 checks FAIL
+36 checks PASS
+32 checks FAIL
 38 checks WARN
 10 checks INFO
